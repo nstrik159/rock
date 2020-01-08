@@ -161,7 +161,7 @@
     immediate: true
     zone: work  # This should be a different zone, but leaving this here for now
   when: (groups['elasticsearch']|union(groups['logstash'])|union(groups['kibana']))| count > 1
-  loop: 
+  loop:
     - 9200
     - 9300
 
@@ -171,5 +171,4 @@
   when: "(es_config.changed or es_memlock.changed or es_jvm.changed) and not es_install.changed"
   tags:
     - skip_ansible_lint  # [503] Tasks that run when changed should be handlers
-
 ...
